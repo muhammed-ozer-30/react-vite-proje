@@ -3,24 +3,18 @@ import { useParams } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./ProductDetail.css";
+import { products } from '../../data/products';
 
-const ProductDetail = ({ products }) => {
+const ProductDetail = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [quantity, setQuantity] = useState(1);
-    const [isFavorite, setIsFavorite] = useState(false);
+    const product = products.find(p => p.id === parseInt(id));
 
-    useEffect(() => {
-        if (products) {
-            const foundProduct = products.find((p) => p.id === parseInt(id));
-            setProduct(foundProduct);
-            setLoading(false);
-        }
-    }, [id, products]);
-
-    if (loading || !product) {
-        return <div className="loading">Yükleniyor...</div>;
+    if (!product) {
+        return (
+            <div className="not-found">
+                <h2>Ürün bulunamadı</h2>
+            </div>
+        );
     }
 
     const images = product.images.map(img => ({
@@ -30,16 +24,10 @@ const ProductDetail = ({ products }) => {
         thumbnailClass: "thumbnail-image"
     }));
 
-    const handleQuantityChange = (e) => {
-        setQuantity(parseInt(e.target.value));
-    };
-
-    const toggleFavorite = () => {
-        setIsFavorite(!isFavorite);
-    };
-
     return (
         <div className="product-detail">
+            <h1>{product.name}</h1>
+            <p>Detay sayfası yapım aşamasında...</p>
             <div className="product-images">
                 <ImageGallery
                     items={images}
@@ -87,8 +75,7 @@ const ProductDetail = ({ products }) => {
                         <label htmlFor="quantity">Adet:</label>
                         <select
                             id="quantity"
-                            value={quantity}
-                            onChange={handleQuantityChange}
+                            value={1}
                         >
                             {[...Array(10)].map((_, index) => (
                                 <option key={index + 1} value={index + 1}>
@@ -99,10 +86,9 @@ const ProductDetail = ({ products }) => {
                     </div>
                     <button className="add-to-cart">Sepete Ekle</button>
                     <button
-                        className={`favorite-button ${isFavorite ? "active" : ""}`}
-                        onClick={toggleFavorite}
+                        className={`favorite-button`}
                     >
-                        {isFavorite ? "❤️" : "🤍"}
+                        🤍
                     </button>
                 </div>
                 <div className="product-specs">
