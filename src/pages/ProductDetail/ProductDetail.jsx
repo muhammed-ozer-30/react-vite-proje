@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
@@ -26,8 +26,6 @@ const ProductDetail = () => {
 
     return (
         <div className="product-detail">
-            <h1>{product.name}</h1>
-            <p>Detay sayfası yapım aşamasında...</p>
             <div className="product-images">
                 <ImageGallery
                     items={images}
@@ -61,11 +59,6 @@ const ProductDetail = () => {
                 </div>
                 <div className="product-price">
                     <span className="current-price">₺{product.price.toLocaleString()}</span>
-                    {product.oldPrice && (
-                        <span className="old-price">
-                            ₺{product.oldPrice.toLocaleString()}
-                        </span>
-                    )}
                 </div>
                 <div className="product-description">
                     <p>{product.description}</p>
@@ -75,7 +68,7 @@ const ProductDetail = () => {
                         <label htmlFor="quantity">Adet:</label>
                         <select
                             id="quantity"
-                            value={1}
+                            defaultValue={1}
                         >
                             {[...Array(10)].map((_, index) => (
                                 <option key={index + 1} value={index + 1}>
@@ -85,9 +78,7 @@ const ProductDetail = () => {
                         </select>
                     </div>
                     <button className="add-to-cart">Sepete Ekle</button>
-                    <button
-                        className={`favorite-button`}
-                    >
+                    <button className="favorite-button">
                         🤍
                     </button>
                 </div>
@@ -99,16 +90,20 @@ const ProductDetail = () => {
                             <span className="spec-value">{product.category}</span>
                         </div>
                         <div className="spec-item">
+                            <span className="spec-label">Marka:</span>
+                            <span className="spec-value">{product.brand}</span>
+                        </div>
+                        <div className="spec-item">
                             <span className="spec-label">Stok Durumu:</span>
-                            <span className="spec-value">Mevcut</span>
+                            <span className="spec-value">{product.stock > 0 ? `${product.stock} adet` : 'Stokta yok'}</span>
                         </div>
                         <div className="spec-item">
-                            <span className="spec-label">Kargo:</span>
-                            <span className="spec-value">Ücretsiz</span>
-                        </div>
-                        <div className="spec-item">
-                            <span className="spec-label">Garanti:</span>
-                            <span className="spec-value">2 Yıl</span>
+                            <span className="spec-label">Özellikler:</span>
+                            <ul className="features-list">
+                                {product.features.map((feature, index) => (
+                                    <li key={index}>{feature}</li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 </div>
