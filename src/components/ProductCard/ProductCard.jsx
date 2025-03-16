@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
+    const navigate = useNavigate();
     const { addToCart, isFavorite, toggleFavorite } = useCart();
 
     const formatPrice = (price) => {
@@ -13,20 +14,24 @@ const ProductCard = ({ product }) => {
         }).format(price);
     };
 
-    const handleAddToCart = () => {
+    const handleCardClick = () => {
+        navigate(`/product/${product.id}`);
+    };
+
+    const handleAddToCart = (e) => {
+        e.stopPropagation();
         addToCart(product);
     };
 
-    const handleToggleFavorite = () => {
+    const handleToggleFavorite = (e) => {
+        e.stopPropagation();
         toggleFavorite(product.id);
     };
 
     return (
-        <div className="product-card">
+        <div className="product-card" onClick={handleCardClick}>
             <div className="product-image">
-                <Link to={`/product/${product.id}`}>
-                    <img src={product.images[0]} alt={product.name} />
-                </Link>
+                <img src={product.images[0]} alt={product.name} />
                 <button
                     className={`favorite-button ${isFavorite(product.id) ? 'active' : ''}`}
                     onClick={handleToggleFavorite}
@@ -35,9 +40,9 @@ const ProductCard = ({ product }) => {
                 </button>
             </div>
             <div className="product-info">
-                <Link to={`/product/${product.id}`} className="product-name">
+                <div className="product-name">
                     {product.name}
-                </Link>
+                </div>
                 <div className="product-rating">
                     {'⭐'.repeat(Math.floor(product.rating))}
                     <span className="review-count">({product.reviewCount} değerlendirme)</span>

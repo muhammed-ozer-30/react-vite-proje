@@ -5,16 +5,17 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
+    margin-top: 80px;
 }
 
 .filters {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
     height: fit-content;
     position: sticky;
-    top: 80px;
+    top: 100px;
 }
 
 .filter-header {

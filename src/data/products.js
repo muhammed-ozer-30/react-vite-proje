@@ -10,9 +10,9 @@ export const products = [
         rating: 4.8,
         reviewCount: 127,
         images: [
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg",
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-gold?wid=5120&hei=2880&fmt=p-jpg",
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-7inch-silver?wid=5120&hei=2880&fmt=p-jpg"
+            "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1695048132314-49a0a4b97d0f?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1695048133996-f1b1fb466bee?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "6.1 inç Super Retina XDR OLED ekran",
@@ -33,8 +33,8 @@ export const products = [
         rating: 4.9,
         reviewCount: 89,
         images: [
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-spacegray-select-202301?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671304673229",
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/mbp14-silver-select-202301?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1671304673229"
+            "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "14 inç Liquid Retina XDR ekran",
@@ -55,9 +55,9 @@ export const products = [
         rating: 4.7,
         reviewCount: 156,
         images: [
-            "https://images.samsung.com/is/image/samsung/p6pim/tr/2302/gallery/tr-galaxy-s23-s918-sm-s918bzgctur-thumb-534863401",
-            "https://images.samsung.com/is/image/samsung/p6pim/tr/2302/gallery/tr-galaxy-s23-s918-sm-s918bzkctur-thumb-534863464",
-            "https://images.samsung.com/is/image/samsung/p6pim/tr/2302/gallery/tr-galaxy-s23-s918-sm-s918blvctur-thumb-534863383"
+            "https://images.unsplash.com/photo-1678911820864-e2c567c655d7?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1678911820846-3b30407e2aa7?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1678911820793-29c3b8f647cb?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "6.8 inç Dynamic AMOLED ekran",
@@ -78,8 +78,8 @@ export const products = [
         rating: 4.8,
         reviewCount: 94,
         images: [
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-12-select-wifi-spacegray-202210?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1664411207213",
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/ipad-pro-12-select-wifi-silver-202210?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1664411207213"
+            "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1585790050230-5dd28404ccb9?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "12.9 inç Liquid Retina XDR ekran",
@@ -100,8 +100,8 @@ export const products = [
         rating: 4.7,
         reviewCount: 203,
         images: [
-            "https://www.sony.com.tr/image/5d02da5df552836db894cead8a68f5f3?fmt=pjpeg&bgcolor=FFFFFF&bgc=FFFFFF&wid=2515&hei=1320",
-            "https://www.sony.com.tr/image/bc0837bf0a9e3b5f4db31342c1af2e47?fmt=pjpeg&bgcolor=FFFFFF&bgc=FFFFFF&wid=2515&hei=1320"
+            "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "Gelişmiş gürültü engelleme",
@@ -122,8 +122,8 @@ export const products = [
         rating: 4.6,
         reviewCount: 78,
         images: [
-            "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9520/media-gallery/black/laptop-xps-15-9520-t-black-gallery-1.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=402&qlt=100,1&resMode=sharp2&size=402,402&chrss=full",
-            "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9520/media-gallery/black/laptop-xps-15-9520-t-black-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=402&qlt=100,1&resMode=sharp2&size=402,402&chrss=full"
+            "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1593642634367-d91a135587b5?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "15.6 inç 4K OLED ekran",
@@ -144,8 +144,8 @@ export const products = [
         rating: 4.8,
         reviewCount: 167,
         images: [
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MKUQ3_VW_34FR+watch-45-alum-midnight-nc-8s_VW_34FR_WF_CO?wid=1400&hei=1400&trim=1,0&fmt=p-jpg&qlt=95&.v=1632171067000,1661971867381",
-            "https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/MKUQ3_VW_PF+watch-45-alum-midnight-nc-8s_VW_PF_WF_CO?wid=1400&hei=1400&trim=1,0&fmt=p-jpg&qlt=95&.v=1632171068000,1661971867355"
+            "https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "Her zaman açık Retina ekran",
@@ -166,8 +166,8 @@ export const products = [
         rating: 4.7,
         reviewCount: 45,
         images: [
-            "https://images.samsung.com/is/image/samsung/p6pim/tr/qe65qn90batxtk/gallery/tr-neo-qled-qn90b-qe65qn90batxtk-531503754?$684_547_PNG$",
-            "https://images.samsung.com/is/image/samsung/p6pim/tr/qe65qn90batxtk/gallery/tr-neo-qled-qn90b-qe65qn90batxtk-531503738?$684_547_PNG$"
+            "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1577979749830-f1d742b96791?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "65 inç Neo QLED panel",
@@ -188,8 +188,8 @@ export const products = [
         rating: 4.8,
         reviewCount: 112,
         images: [
-            "https://stormsend1.djicdn.com/stormsend/uploads/796d4d69-29df-4ca2-80f5-4e2e6bc34379.jpg",
-            "https://stormsend1.djicdn.com/stormsend/uploads/0d5aeb47-a69d-4df7-8cfa-4c5d2811fe7f.jpg"
+            "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "4K/60fps video",
@@ -210,8 +210,8 @@ export const products = [
         rating: 4.6,
         reviewCount: 89,
         images: [
-            "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/398614-01.png?$responsive$&fmt=png-alpha&cropPathE=mobile&fit=stretch,1&wid=1920",
-            "https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/primary/398614-02.png?$responsive$&fmt=png-alpha&cropPathE=mobile&fit=stretch,1&wid=1920"
+            "https://images.unsplash.com/photo-1558317374-067fb5f30001?w=800&auto=format&fit=crop&q=60",
+            "https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?w=800&auto=format&fit=crop&q=60"
         ],
         features: [
             "Lazer toz algılama",

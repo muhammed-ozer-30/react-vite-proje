@@ -16,13 +16,12 @@ const Navbar = () => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        navigate('/');
+        // Arama işlemleri burada yapılacak
     };
 
     const handleLogout = () => {
         logout();
-        setShowUserMenu(false);
-        navigate('/');
+        navigate('/login');
     };
 
     return (
@@ -65,22 +64,14 @@ const Navbar = () => {
                         </button>
                         {showUserMenu && (
                             <div className="dropdown-menu">
-                                <Link to="/profile">Profilim</Link>
-                                <Link to="/orders">Siparişlerim</Link>
-                                <Link to="/favorites">Favorilerim</Link>
                                 <button onClick={handleLogout}>Çıkış Yap</button>
                             </div>
                         )}
                     </div>
                 ) : (
-                    <div className="auth-buttons">
-                        <Link to="/login" className="login-button">
-                            Giriş Yap
-                        </Link>
-                        <Link to="/register" className="register-button">
-                            Kayıt Ol
-                        </Link>
-                    </div>
+                    <Link to="/login" className="login-button">
+                        Giriş Yap
+                    </Link>
                 )}
             </div>
         </nav>
