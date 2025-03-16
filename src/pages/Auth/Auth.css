@@ -1,106 +1,138 @@
 .auth-container {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #3498db, #2c3e50);
+    justify-content: center;
     padding: 2rem;
+    background: #f8f9fa;
 }
 
-.auth-card {
+.auth-box {
     background: white;
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
 }
 
-.auth-card h2 {
+.auth-box h2 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
     font-size: 1.8rem;
 }
 
-.input-group {
-    position: relative;
-    margin-bottom: 1.5rem;
+.error-message {
+    background: #ffe6e6;
+    color: #d63031;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
-.input-group svg {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #95a5a6;
-    font-size: 1.2rem;
+.form-group {
+    margin-bottom: 1rem;
 }
 
-.input-group input {
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.form-group input {
     width: 100%;
-    padding: 12px 12px 12px 40px;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     font-size: 1rem;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
 }
 
-.input-group input:focus {
-    border-color: #3498db;
+.form-group input:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    border-color: #007bff;
 }
 
 .auth-button {
     width: 100%;
-    padding: 12px;
-    background: linear-gradient(to right, #3498db, #2980b9);
+    padding: 0.8rem;
+    background: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease;
+    margin-top: 1rem;
 }
 
 .auth-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    background: #0056b3;
 }
 
-.auth-links {
-    margin-top: 1.5rem;
+.auth-link {
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
 }
 
-.auth-links a {
-    color: #3498db;
+.auth-link a {
+    color: #007bff;
     text-decoration: none;
-    transition: color 0.3s ease;
+    margin-left: 0.5rem;
 }
 
-.auth-links a:hover {
-    color: #2980b9;
+.auth-link a:hover {
+    text-decoration: underline;
 }
 
-.auth-links span {
-    color: #95a5a6;
+/* Dark Theme için stiller (daha sonra eklenecek) */
+[data-theme='dark'] .auth-container {
+    background: #1a1a1a;
+}
+
+[data-theme='dark'] .auth-box {
+    background: #2d2d2d;
+}
+
+[data-theme='dark'] .auth-box h2 {
+    color: #fff;
+}
+
+[data-theme='dark'] .form-group label {
+    color: #ccc;
+}
+
+[data-theme='dark'] .form-group input {
+    background: #3d3d3d;
+    border-color: #4d4d4d;
+    color: #fff;
+}
+
+[data-theme='dark'] .auth-link {
+    color: #ccc;
+}
+
+[data-theme='dark'] .auth-link a {
+    color: #66b0ff;
 }
 
 @media (max-width: 480px) {
-    .auth-card {
+    .auth-box {
         padding: 1.5rem;
     }
 
-    .auth-card h2 {
+    .auth-box h2 {
         font-size: 1.5rem;
     }
 
-    .input-group input {
+    .form-group input {
         font-size: 0.9rem;
     }
 }

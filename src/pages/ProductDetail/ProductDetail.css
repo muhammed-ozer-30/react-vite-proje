@@ -5,85 +5,45 @@
     padding: 2rem;
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 2rem auto;
     max-width: 1200px;
 }
 
 .product-images {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    width: 100%;
 }
 
-.main-image {
-    position: relative;
+/* Image Gallery Özelleştirmeleri */
+.image-gallery {
     width: 100%;
-    height: 400px;
+    background: white;
     border-radius: 8px;
     overflow: hidden;
 }
 
-.main-image img {
+.image-gallery-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    height: 400px;
+    object-fit: contain;
 }
 
-.main-image:hover img {
-    transform: scale(1.05);
+.image-gallery-thumbnails {
+    padding: 10px 0;
 }
 
-.like-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: white;
-    border: none;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-
-.like-button svg {
-    color: #666;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-.like-button.liked svg {
-    color: var(--accent-color);
-}
-
-.image-thumbnails {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 1rem;
-}
-
-.image-thumbnails img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
+.image-gallery-thumbnail {
+    border: 2px solid transparent;
     border-radius: 4px;
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.image-thumbnails img:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.image-gallery-thumbnail.active {
+    border-color: #007bff;
 }
 
-.image-thumbnails img.selected {
-    border: 2px solid var(--primary-color);
+.image-gallery-thumbnail:hover {
+    border-color: #0056b3;
 }
 
 .product-info {
@@ -94,7 +54,7 @@
 
 .product-info h1 {
     font-size: 2rem;
-    color: var(--text-color);
+    color: #333;
     margin: 0;
 }
 
@@ -104,13 +64,23 @@
     gap: 0.5rem;
 }
 
+.stars {
+    display: flex;
+    gap: 2px;
+}
+
 .star {
     color: #ddd;
     font-size: 1.2rem;
 }
 
-.star.active {
+.star.filled {
     color: #ffd700;
+}
+
+.review-count {
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .product-price {
@@ -121,8 +91,8 @@
 
 .current-price {
     font-size: 2rem;
-    font-weight: 600;
-    color: var(--text-color);
+    font-weight: bold;
+    color: #2c3e50;
 }
 
 .old-price {
@@ -132,65 +102,58 @@
 }
 
 .product-description {
-    font-size: 1rem;
-    line-height: 1.6;
     color: #666;
+    line-height: 1.6;
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem 0;
 }
 
 .quantity-selector {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    background: #f5f5f5;
-    padding: 0.5rem;
-    border-radius: 4px;
-    width: fit-content;
+    gap: 0.5rem;
 }
 
-.quantity-selector button {
-    background: white;
+.quantity-selector select {
+    padding: 0.5rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.quantity-selector button:hover {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-.quantity-selector span {
-    font-size: 1.1rem;
-    font-weight: 500;
-    min-width: 32px;
-    text-align: center;
+    font-size: 1rem;
 }
 
 .add-to-cart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    background: var(--primary-color);
+    padding: 0.8rem 2rem;
+    background: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .add-to-cart:hover {
-    background: #2980b9;
+    background: #0056b3;
+}
+
+.favorite-button {
+    padding: 0.8rem;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.favorite-button.active {
+    background: #ffe6e6;
+    border-color: #ff4d4d;
 }
 
 .product-specs {
@@ -199,86 +162,44 @@
 
 .product-specs h2 {
     font-size: 1.5rem;
+    color: #333;
     margin-bottom: 1rem;
 }
 
 .specs-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    background: #f5f5f5;
-    padding: 1rem;
-    border-radius: 8px;
 }
 
 .spec-item {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: #f8f9fa;
+    border-radius: 4px;
 }
 
 .spec-label {
-    font-size: 0.9rem;
     color: #666;
+    font-weight: 500;
 }
 
 .spec-value {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color);
+    color: #333;
+    font-weight: 600;
 }
 
-.product-reviews {
-    margin-top: 2rem;
-}
-
-.product-reviews h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-.review {
-    background: #f5f5f5;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.reviewer-name {
-    font-weight: 500;
-    color: var(--text-color);
-}
-
-.review-text {
-    color: #666;
-    line-height: 1.6;
-    margin: 0.5rem 0;
-}
-
-.review-date {
-    font-size: 0.9rem;
-    color: #999;
-}
-
+/* Mobil Responsive Tasarım */
 @media (max-width: 768px) {
     .product-detail {
         grid-template-columns: 1fr;
         padding: 1rem;
+        margin: 1rem;
     }
 
-    .main-image {
+    .image-gallery-slide img {
         height: 300px;
-    }
-
-    .image-thumbnails {
-        grid-template-columns: repeat(3, 1fr);
     }
 
     .product-info h1 {
@@ -288,4 +209,27 @@
     .current-price {
         font-size: 1.5rem;
     }
+
+    .product-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-to-cart {
+        width: 100%;
+    }
+
+    .specs-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading durumu için stil */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    font-size: 1.2rem;
+    color: #666;
 }

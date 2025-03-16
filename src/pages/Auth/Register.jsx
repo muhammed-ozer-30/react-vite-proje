@@ -1,90 +1,113 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import './Auth.css';
-import { FaUser, FaEnvelope, FaLock, FaPhone } from 'react-icons/fa';
 
 const Register = () => {
-    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        phone: '',
         password: '',
         confirmPassword: ''
     });
+    const [error, setError] = useState('');
+    const { register } = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (formData.password !== formData.confirmPassword) {
-            alert('Şifreler eşleşmiyor!');
+        setError('');
+
+        // Doğrulama
+        if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+            setError('Lütfen tüm alanları doldurun');
             return;
         }
-        // Burada backend bağlantısı yapılacak
-        console.log('Kayıt yapılıyor:', formData);
-        navigate('/login');
+
+        if (formData.password !== formData.confirmPassword) {
+            setError('Şifreler eşleşmiyor');
+            return;
+        }
+
+        if (formData.password.length < 6) {
+            setError('Şifre en az 6 karakter olmalıdır');
+            return;
+        }
+
+        // Gerçek uygulamada burada API çağrısı yapılır
+        try {
+            register(formData);
+            navigate('/');
+        } catch (err) {
+            setError('Kayıt olurken bir hata oluştu');
+        }
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
     return (
         <div className="auth-container">
-            <div className="auth-card">
-                <h2>Hesap Oluştur</h2>
+            <div className="auth-box">
+                <h2>Kayıt Ol</h2>
+                {error && <div className="error-message">{error}</div>}
                 <form onSubmit={handleSubmit}>
-                    <div className="input-group">
-                        <FaUser />
+                    <div className="form-group">
+                        <label htmlFor="name">Ad Soyad</label>
                         <input
                             type="text"
-                            placeholder="Ad Soyad"
+                            id="name"
+                            name="name"
                             value={formData.name}
-                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                            required
+                            onChange={handleChange}
+                            placeholder="Ad ve soyadınız"
                         />
                     </div>
-                    <div className="input-group">
-                        <FaEnvelope />
+                    <div className="form-group">
+                        <label htmlFor="email">E-posta</label>
                         <input
                             type="email"
-                            placeholder="E-posta"
+                            id="email"
+                            name="email"
                             value={formData.email}
-                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                            required
+                            onChange={handleChange}
+                            placeholder="E-posta adresiniz"
                         />
                     </div>
-                    <div className="input-group">
-                        <FaPhone />
-                        <input
-                            type="tel"
-                            placeholder="Telefon"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                            required
-                        />
-                    </div>
-                    <div className="input-group">
-                        <FaLock />
+                    <div className="form-group">
+                        <label htmlFor="password">Şifre</label>
                         <input
                             type="password"
-                            placeholder="Şifre"
+                            id="password"
+                            name="password"
                             value={formData.password}
-                            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                            required
+                            onChange={handleChange}
+                            placeholder="Şifreniz (en az 6 karakter)"
                         />
                     </div>
-                    <div className="input-group">
-                        <FaLock />
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">Şifre Tekrar</label>
                         <input
                             type="password"
-                            placeholder="Şifre Tekrar"
+                            id="confirmPassword"
+                            name="confirmPassword"
                             value={formData.confirmPassword}
-                            onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                            required
+                            onChange={handleChange}
+                            placeholder="Şifrenizi tekrar girin"
                         />
                     </div>
-                    <button type="submit" className="auth-button">Kayıt Ol</button>
+                    <button type="submit" className="auth-button">
+                        Kayıt Ol
+                    </button>
                 </form>
-                <div className="auth-links">
-                    <span>Zaten hesabınız var mı?</span>
-                    <Link to="/login">Giriş Yap</Link>
-                </div>
+                <p className="auth-link">
+                    Zaten hesabınız var mı? <Link to="/login">Giriş Yap</Link>
+                </p>
             </div>
         </div>
     );

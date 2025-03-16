@@ -1,136 +1,129 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { FaHeart, FaShoppingCart, FaStar } from 'react-icons/fa';
-import './ProductDetail.css';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
+import "./ProductDetail.css";
 
-const ProductDetail = ({ products, onAddToCart }) => {
+const ProductDetail = ({ products }) => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [selectedImage, setSelectedImage] = useState(0);
     const [quantity, setQuantity] = useState(1);
     const [isFavorite, setIsFavorite] = useState(false);
 
     useEffect(() => {
-        // Ürün verilerini al
-        const foundProduct = products.find(p => p.id === parseInt(id));
-        if (foundProduct) {
+        if (products) {
+            const foundProduct = products.find((p) => p.id === parseInt(id));
             setProduct(foundProduct);
-            setSelectedImage(0); // İlk fotoğrafı seç
+            setLoading(false);
         }
-        setLoading(false);
     }, [id, products]);
 
-    if (loading) return <div>Yükleniyor...</div>;
-    if (!product) return <div>Ürün bulunamadı.</div>;
+    if (loading || !product) {
+        return <div className="loading">Yükleniyor...</div>;
+    }
 
-    const handleQuantityChange = (newQuantity) => {
-        if (newQuantity >= 1) {
-            setQuantity(newQuantity);
-        }
+    const images = product.images.map(img => ({
+        original: img,
+        thumbnail: img,
+        originalClass: "product-image",
+        thumbnailClass: "thumbnail-image"
+    }));
+
+    const handleQuantityChange = (e) => {
+        setQuantity(parseInt(e.target.value));
     };
 
-    const handleImageClick = (index) => {
-        setSelectedImage(index);
+    const toggleFavorite = () => {
+        setIsFavorite(!isFavorite);
     };
 
     return (
         <div className="product-detail">
             <div className="product-images">
-                <div className="main-image">
-                    <img src={product.images[selectedImage]} alt={product.name} />
-                    <button
-                        className={`like-button ${isFavorite ? 'liked' : ''}`}
-                        onClick={() => setIsFavorite(!isFavorite)}
-                    >
-                        <FaHeart />
-                    </button>
-                </div>
-                <div className="image-thumbnails">
-                    {product.images.map((image, index) => (
-                        <img
-                            key={index}
-                            src={image}
-                            alt={`${product.name} - ${index + 1}`}
-                            className={selectedImage === index ? 'selected' : ''}
-                            onClick={() => handleImageClick(index)}
-                        />
-                    ))}
-                </div>
+                <ImageGallery
+                    items={images}
+                    showPlayButton={false}
+                    showFullscreenButton={true}
+                    showNav={true}
+                    showThumbnails={true}
+                    thumbnailPosition="bottom"
+                    useBrowserFullscreen={true}
+                    lazyLoad={true}
+                    slideDuration={300}
+                    slideInterval={3000}
+                    swipeable={true}
+                    onErrorImageURL="https://via.placeholder.com/400x300?text=Resim+Yüklenemedi"
+                />
             </div>
-
             <div className="product-info">
                 <h1>{product.name}</h1>
-
                 <div className="product-rating">
-                    {[...Array(5)].map((_, index) => (
-                        <FaStar
-                            key={index}
-                            className={index < product.rating ? 'star active' : 'star'}
-                        />
-                    ))}
-                    <span>({product.reviewCount} değerlendirme)</span>
+                    <div className="stars">
+                        {[...Array(5)].map((_, index) => (
+                            <span
+                                key={index}
+                                className={index < product.rating ? "star filled" : "star"}
+                            >
+                                ★
+                            </span>
+                        ))}
+                    </div>
+                    <span className="review-count">({product.reviewCount} değerlendirme)</span>
                 </div>
-
                 <div className="product-price">
-                    <span className="current-price">{product.price.toLocaleString()}₺</span>
+                    <span className="current-price">₺{product.price.toLocaleString()}</span>
                     {product.oldPrice && (
-                        <span className="old-price">{product.oldPrice.toLocaleString()}₺</span>
+                        <span className="old-price">
+                            ₺{product.oldPrice.toLocaleString()}
+                        </span>
                     )}
                 </div>
-
-                <p className="product-description">{product.description}</p>
-
-                <div className="quantity-selector">
-                    <button onClick={() => handleQuantityChange(quantity - 1)}>-</button>
-                    <span>{quantity}</span>
-                    <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
+                <div className="product-description">
+                    <p>{product.description}</p>
                 </div>
-
-                <button
-                    className="add-to-cart"
-                    onClick={() => onAddToCart(product, quantity)}
-                >
-                    <FaShoppingCart /> Sepete Ekle
-                </button>
-
+                <div className="product-actions">
+                    <div className="quantity-selector">
+                        <label htmlFor="quantity">Adet:</label>
+                        <select
+                            id="quantity"
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                        >
+                            {[...Array(10)].map((_, index) => (
+                                <option key={index + 1} value={index + 1}>
+                                    {index + 1}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <button className="add-to-cart">Sepete Ekle</button>
+                    <button
+                        className={`favorite-button ${isFavorite ? "active" : ""}`}
+                        onClick={toggleFavorite}
+                    >
+                        {isFavorite ? "❤️" : "🤍"}
+                    </button>
+                </div>
                 <div className="product-specs">
                     <h2>Teknik Özellikler</h2>
                     <div className="specs-grid">
                         <div className="spec-item">
-                            <span className="spec-label">Marka</span>
-                            <span className="spec-value">Apple</span>
+                            <span className="spec-label">Kategori:</span>
+                            <span className="spec-value">{product.category}</span>
                         </div>
                         <div className="spec-item">
-                            <span className="spec-label">Model</span>
-                            <span className="spec-value">{product.name}</span>
-                        </div>
-                        <div className="spec-item">
-                            <span className="spec-label">Garanti</span>
-                            <span className="spec-value">24 Ay</span>
-                        </div>
-                        <div className="spec-item">
-                            <span className="spec-label">Stok Durumu</span>
+                            <span className="spec-label">Stok Durumu:</span>
                             <span className="spec-value">Mevcut</span>
                         </div>
-                    </div>
-                </div>
-
-                <div className="product-reviews">
-                    <h2>Kullanıcı Değerlendirmeleri</h2>
-                    <div className="review">
-                        <div className="review-header">
-                            <span className="reviewer-name">Ahmet Y.</span>
-                            <div className="review-rating">
-                                {[...Array(5)].map((_, index) => (
-                                    <FaStar key={index} className="star active" />
-                                ))}
-                            </div>
+                        <div className="spec-item">
+                            <span className="spec-label">Kargo:</span>
+                            <span className="spec-value">Ücretsiz</span>
                         </div>
-                        <p className="review-text">
-                            Harika bir ürün, beklentilerimi fazlasıyla karşıladı. Özellikle performansı çok etkileyici.
-                        </p>
-                        <span className="review-date">15 Mart 2024</span>
+                        <div className="spec-item">
+                            <span className="spec-label">Garanti:</span>
+                            <span className="spec-value">2 Yıl</span>
+                        </div>
                     </div>
                 </div>
             </div>
